@@ -1,3 +1,1 @@
-class AppTheme {
-  AppTheme._();
-}
+

@@ -1,20 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:peymo/di.dart';
 
-void main() {
-  runApp(const MainApp());
-}
+import 'core/core.dart';
+import 'src/business_logic/multi_bloc.dart';
+import 'src/business_logic/observer.dart';
 
-class MainApp extends StatelessWidget {
-  const MainApp({super.key});
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  Bloc.observer = PeymoBlocObserver();
+  ServiceLocator.init();
 
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
-        ),
-      ),
-    );
-  }
+  runApp(MultiBlocProvider(
+    providers: MultiBloc.allBlocProviders,
+    child: const PeymoConfig(),
+  ));
 }
