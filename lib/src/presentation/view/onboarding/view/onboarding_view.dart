@@ -39,16 +39,15 @@ class _OnboardingView
                 left: 0,
                 right: 0,
                 bottom: peymoHeight * 0.18,
-                child: PeymoButton(
-                  onTap: () {},
-                ).padding(
+                child: PeymoButton(onTap: () => controller.continueButton())
+                    .padding(
                   const EdgeInsets.symmetric(horizontal: 20),
                 ),
               ),
               Positioned(
                 left: 0,
                 right: 0,
-                bottom: peymoHeight * 0.08,
+                bottom: peymoHeight * 0.1,
                 child: state.page == 1
                     ? RichText(
                         textAlign: TextAlign.center,
@@ -56,7 +55,7 @@ class _OnboardingView
                             text: 'Login',
                             style: appFontStyle(16, FontWeight.w500),
                             recognizer: TapGestureRecognizer()
-                              ..onTap = () => {}),
+                              ..onTap = () => controller.login()),
                       )
                     : const SizedBox.shrink(),
               ),
@@ -68,17 +67,34 @@ class _OnboardingView
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          SmoothPageIndicator(
-                            controller: controller.pageController,
-                            count: 3,
-                            effect: WormEffect(
-                              radius: 8,
-                              dotHeight: 8.h,
-                              dotWidth: 40.w,
-                              spacing: 8,
-                              dotColor: AppStyle.secondary,
-                              activeDotColor: AppStyle.secondary,
-                            ),
+                          Row(
+                            children: [
+                              SmoothPageIndicator(
+                                controller: controller.pageController,
+                                count: 1,
+                                effect: WormEffect(
+                                  radius: 8,
+                                  dotHeight: 8.h,
+                                  dotWidth: 40.w,
+                                  spacing: 8,
+                                  dotColor: AppStyle.secondary,
+                                  activeDotColor: AppStyle.secondary,
+                                ),
+                              ),
+                              5.sbW,
+                              SmoothPageIndicator(
+                                controller: controller.pageController,
+                                count: 2,
+                                effect: WormEffect(
+                                  radius: 8,
+                                  dotHeight: 8.h,
+                                  dotWidth: 20.w,
+                                  spacing: 5,
+                                  dotColor: AppStyle.secondary,
+                                  activeDotColor: AppStyle.secondary,
+                                ),
+                              ),
+                            ],
                           ),
                           RichText(
                             text: TextSpan(
@@ -86,7 +102,7 @@ class _OnboardingView
                                 style: appFontStyle(16, FontWeight.w500,
                                     color: AppStyle.black),
                                 recognizer: TapGestureRecognizer()
-                                  ..onTap = () => {}),
+                                  ..onTap = () => controller.login()),
                           )
                         ],
                       ).padding(const EdgeInsets.symmetric(horizontal: 10)),

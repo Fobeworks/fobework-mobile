@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:peymo/di.dart';
 
-import 'bloc/bloc_exports.dart';
+import 'src/presentation/controllers/bloc/bloc_exports.dart';
 
 class MultiBloc {
   static get allBlocProviders => [

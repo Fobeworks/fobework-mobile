@@ -9,5 +9,6 @@ class AppRadius {
   static BorderRadius get miniMediumBorderRadius => BorderRadius.circular(16);
   static BorderRadius get largeMediumBorderRadius => BorderRadius.circular(18);
   static BorderRadius get largeBorderRadius => BorderRadius.circular(20);
+  static BorderRadius get largeMiniBorderRadius => BorderRadius.circular(22);
   static BorderRadius get klargeBorderRadius => BorderRadius.circular(25);
 }

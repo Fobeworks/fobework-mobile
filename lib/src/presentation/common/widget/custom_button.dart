@@ -24,7 +24,7 @@ class PeymoButton extends StatelessWidget {
       alignment: Alignment.center,
       decoration: BoxDecoration(
         color: color,
-        borderRadius: AppRadius.largeBorderRadius,
+        borderRadius: AppRadius.largeMiniBorderRadius,
       ),
       child: reusableText(
         text,

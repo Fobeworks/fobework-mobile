@@ -13,13 +13,17 @@ class SplashController extends State<SplashScreen>
     with SingleTickerProviderStateMixin {
   late final AnimationController _animationController =
       AnimationController(vsync: this, duration: const Duration(seconds: 3));
+  final localStorage = di<LocalDataStorage>();
 
   _startDelay() {
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
     _animationController.forward().whenComplete(() => _goNext());
   }
 
-  _goNext() {
-    context.go(OnboardingScreen.route);
+  Future<void> _goNext() async {
+    await localStorage.getData(onboardingkey).then((value) => value == ''
+        ? context.go(OnboardingScreen.route)
+        : context.go(LoginScreen.route));
   }
 
   @override
@@ -36,6 +40,8 @@ class SplashController extends State<SplashScreen>
   @override
   void dispose() {
     _animationController.dispose();
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
+        overlays: SystemUiOverlay.values);
     super.dispose();
   }
 }
