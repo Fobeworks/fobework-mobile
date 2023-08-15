@@ -2,7 +2,7 @@ part of '../splash_barrel.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
-  static const String route = '/';
+  static const String path = '/';
   static const String name = 'splash';
 
   @override
@@ -21,9 +21,7 @@ class SplashController extends State<SplashScreen>
   }
 
   Future<void> _goNext() async {
-    await localStorage.getData(onboardingkey).then((value) => value == ''
-        ? context.go(OnboardingScreen.route)
-        : context.go(LoginScreen.route));
+
   }
 
   @override

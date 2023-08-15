@@ -1,5 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:peymo/di.dart';
+import 'package:peymo/injection_container.dart';
 
 import 'src/presentation/controllers/bloc/bloc_exports.dart';
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:peymo/src/domain/common/storage/local_storage.dart';
 
 import '../../src/presentation/view/view_barrel.dart';
 
@@ -22,21 +23,37 @@ GlobalKey<NavigatorState> get _navigatorKey => GlobalKey<NavigatorState>();
 
 final GoRouter _router = GoRouter(
   navigatorKey: _navigatorKey,
-  initialLocation: SplashScreen.route,
+  initialLocation: SplashScreen.path,
   debugLogDiagnostics: true,
+  redirect: (BuildContext context, GoRouterState state) async {
+    print(state.matchedLocation);
+    print(await LocalDataStorage.instance.getFirstTime());
+    if (state.matchedLocation == LoginScreen.path) {
+      if (await LocalDataStorage.instance.getFirstTime()) {
+        return OnboardingScreen.path;
+      } else {
+        // if (await LocalDataStorage.instance.getLoggedIn()) {
+
+        // } else {
+        return LoginScreen.path;
+        // }
+      }
+    }
+    return null;
+  },
   routes: [
     GoRoute(
-      path: SplashScreen.route,
+      path: SplashScreen.path,
       name: SplashScreen.name,
       builder: (context, state) => const SplashScreen(),
     ),
     GoRoute(
-      path: OnboardingScreen.route,
+      path: OnboardingScreen.path,
       name: OnboardingScreen.name,
       builder: (context, state) => const OnboardingScreen(),
     ),
     GoRoute(
-      path: LoginScreen.route,
+      path: LoginScreen.path,
       name: LoginScreen.name,
       pageBuilder: (context, state) {
         return CustomTransitionPage(
@@ -53,7 +70,7 @@ final GoRouter _router = GoRouter(
       },
     ),
     GoRoute(
-      path: SignupScreen.route,
+      path: SignupScreen.path,
       name: SignupScreen.name,
       pageBuilder: (context, state) {
         return CustomTransitionPage(

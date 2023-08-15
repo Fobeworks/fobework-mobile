@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:peymo/core/config/app_logger.dart';
 import 'package:peymo/core/core.dart';
-import 'package:peymo/di.dart';
+import 'package:peymo/injection_container.dart';
 import 'package:peymo/src/domain/common/storage/local_storage.dart';
 import 'package:peymo/src/presentation/controllers/bloc/bloc_exports.dart';
 import 'package:peymo/src/presentation/view/view_barrel.dart';

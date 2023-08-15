@@ -2,7 +2,7 @@ part of '../onboarding_barrel.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
-  static const String route = '/onboard';
+  static const String path = '/onboard';
   static const String name = 'onboard';
 
   @override
@@ -11,7 +11,12 @@ class OnboardingScreen extends StatefulWidget {
 
 class OnboardingController extends State<OnboardingScreen> {
   final PageController pageController = PageController();
-  final localStorage = di<LocalDataStorage>();
+
+  @override
+  void initState() {
+    super.initState();
+    LocalDataStorage.instance.setFirstTime();
+  }
 
   @override
   void dispose() {
@@ -20,15 +25,15 @@ class OnboardingController extends State<OnboardingScreen> {
   }
 
   continueButton() {
-    localStorage
-        .saveData(onboardingkey, onboardingkey)
-        .then((value) => context.go(SignupScreen.route));
+    debugPrint('clicked');
+    context.goNamed(SignupScreen.name);
+
+    debugPrint('clicked2');
   }
 
   login() {
-    localStorage
-        .saveData(onboardingkey, onboardingkey)
-        .then((value) => context.go(LoginScreen.route));
+    debugPrint('clicked');
+    context.goNamed(LoginScreen.name);
   }
 
   @override
